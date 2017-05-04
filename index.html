@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A-Frame Solar System</title>
+    <meta name="A-Frame VR Solar System" content="A-Frame VR Solar System">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^3.2.0/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-curve-component/dist/aframe-curve-component.min.js"></script>
+    <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/tizzle/aframe-orbit-controls-component/master/dist/aframe-orbit-controls-component.min.js"></script> 
+  </head>
+
+  <body>
+    <a-scene>
+<!--       <a-camera target="#earth" distance="1" position="5 1.3 4" ></a-camera> -->
+      <a-camera position="0 0 14" ></a-camera>
+
+      <a-assets>
+        <img id="milkyWayTexture" src="https://upload.wikimedia.org/wikipedia/commons/a/a1/ESO_-_The_Milky_Way_panorama_%28by%29.jpg">
+      </a-assets>
+
+      <!--   1:1000000 SCALE size    -->
+<!--   1:10000000 SCALE distance    -->
+      <a-entity id="solarSystem"
+                position="-20, 0, -148">
+
+        <a-entity id="sun" 
+                  geometry="primitive: sphere; 
+                            radius: 139;
+                            segmentsWidth: 150;
+                            segmentsHeight: 150"
+                  material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_sun.jpg?1493694732340; 
+                            shader: flat"
+                  position="0 0 0"
+                  animation="dur: 600000; loop: true; property: rotation; to: 0 360 0; easing: linear">
+          <a-entity light="type: directional" 
+                    position="0 0 0">
+          </a-entity>
+        </a-entity>
+
+          <a-entity id="mercury"
+                    class="planet"
+                    geometry="primitive: sphere;
+                              radius: 0.5;
+                              segmentsWidth: 70;
+                              segmentsHeight: 70" 
+                    material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_mercury.jpg?1493695081322" 
+                    position="0 0 143.4"
+                    orbit-controls="autoRotate: true;
+                                    target: #sun;
+                                    autoRotateSpeed:2;
+                                    minDistance:3;
+                                    maxDistance:143.4;">
+          </a-entity>                  
+
+          <a-entity id="venus"
+                    class="planet"
+                    geometry="primitive: sphere;
+                              radius: 1.2;
+                              segmentsWidth: 75;
+                              segmentsHeight: 75" 
+                    material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_venus_atmosphere.jpg?1493695304768" 
+                    position="0 0 148.1"
+                    orbit-controls="autoRotate: true;
+                                    target: #sun;
+                                    autoRotateSpeed:1.90;
+                                    minDistance:3;
+                                    maxDistance:148.1;">
+          </a-entity>                    
+
+          <a-entity id="earth"
+                    class="planet"
+                    geometry="primitive: sphere;
+                              radius: 1.3;
+                              segmentsWidth: 80;
+                              segmentsHeight: 80" 
+                    material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_earth_clouds.jpg?1493695248913"
+                    position="0 0 151.3"
+                    orbit-controls="autoRotate: true;
+                                    target: #sun;
+                                    autoRotateSpeed:1.4;
+                                    minDistance:3;
+                                    maxDistance:151.3;">
+          </a-entity>
+
+          <a-entity id="mars"
+                    class="planet"
+                    geometry="primitive: sphere;
+                              radius: 0.7" 
+                    material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_mars.jpg?1493695397580;" 
+                    position="0 0 154.9"
+                    orbit-controls="autoRotate: true;
+                                    target: #sun;
+                                    autoRotateSpeed:1.3;
+                                    minDistance:3;
+                                    maxDistance:154.9;">
+          </a-entity>
+
+    <!-- TODO: Asteroid Belt Here -->
+
+          <a-entity id="jupiter"
+                    class="planet"
+                    geometry="primitive: sphere;
+                              radius: 14.3;
+                              segmentsWidth: 100;
+                              segmentsHeight: 100" 
+                    material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_jupiter.jpg?1493695529355" 
+                    position="0 0 205.3"
+                    orbit-controls="autoRotate: true;
+                                    target: #sun;
+                                    autoRotateSpeed:1.00;
+                                    minDistance:3;
+                                    maxDistance:205.3;">
+          </a-entity>
+
+          <a-entity id="saturn"
+                    class="planet"
+                    geometry="primitive: sphere;
+                              radius: 12.0;
+                              segmentsWidth: 90;
+                              segmentsHeight: 90" 
+                    material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_saturn.jpg?1493695550676" 
+                    position="0 0 246.4"
+                    orbit-controls="autoRotate: true;
+                                    target: #sun;
+                                    autoRotateSpeed:0.80;
+                                    minDistance:3;
+                                    maxDistance:246.4;">
+            <a-entity id="saturnRing"
+                      geometry="primitive: ring; 
+                                radiusInner: 12.5; 
+                                radiusOuter: 17"
+                      material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_saturn_ring.png?1493829621722;
+                                side: double">
+            </a-entity>
+          </a-entity>
+
+          <a-entity id="uranus"
+                    class="planet"
+                    geometry="primitive: sphere;
+                              radius: 5.2;
+                              segmentsWidth: 90;
+                              segmentsHeight: 90" 
+                    material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_uranus.jpg?1493695576218" 
+                    position="0 0 336.2"
+                    orbit-controls="autoRotate: true;
+                                    target: #sun;
+                                    autoRotateSpeed:0.70;
+                                    minDistance:3;
+                                    maxDistance:336.2;">
+          </a-entity>
+
+          <a-entity id="neptune"
+                    class="planet"
+                    geometry="primitive: sphere;
+                              radius: 4.8;
+                              segmentsWidth: 80;
+                              segmentsHeight: 80" 
+                    material="src: https://cdn.glitch.com/342beffd-f89e-4737-b3a9-73216740a52d%2Ftexture_neptune.jpg?1493695599570" 
+                    position="0 0 444.8"
+                    orbit-controls="autoRotate: true;
+                                    target: #sun;
+                                    autoRotateSpeed:0.5;
+                                    minDistance:3;
+                                    maxDistance:444.8;">
+          </a-entity>
+
+          <a-entity id="sky" 
+                    geometry="primitive: sphere;
+                              radius: 1000" 
+                    material="src: #milkyWayTexture; 
+                              shader: flat;
+                              side: back">
+          </a-entity>
+
+          <a-entity light="type: ambient; color: #222"></a-entity>
+          <a-entity light="type: directional; color: #111" position="-1 1 0"></a-entity>
+      </a-entity> <!-- end of #solarSystem -->
+
+    </a-scene>
+  </body>
+</html>
